@@ -17,7 +17,9 @@ http1.0 v.s http1.1进化的原因由于每个站点每天会有很多用户的�
 http1.0 v.s http1.1进化的原因由于每个站点每天会有很多用户的请求，为了提高系统效率，HTTP1.0规定浏览器与服务器只保持短暂的链接，浏览器每次请求都要新建立一个TCP链接，该链接在请求完成后断开，服务器不跟踪也不记录过去的请求。
 由于网页变得复杂，这样频繁新建和断开链接的操作对性能造成影响。比如，当一个网">
 <meta property="og:image" content="http://yoursite.com/image/HTTP-1-2-对比/多路复用.png">
-<meta property="og:updated_time" content="2016-04-01T13:33:27.178Z">
+<meta property="og:image" content="http://yoursite.com/image/HTTP-1-2-对比/2.png">
+<meta property="og:image" content="http://yoursite.com/image/HTTP-1-2-对比/3.png">
+<meta property="og:updated_time" content="2016-04-01T13:49:04.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP 1-2 对比">
 <meta name="twitter:description" content="超文本传输协议是一种应用层的协议。它是一种基于请求/响应的无状态的协议。
@@ -290,16 +292,18 @@ http1.0 v.s http1.1进化的原因由于每个站点每天会有很多用户的�
 <p>HTTP的详细内容可以参考本文下方的链接。在此仅简单总结相对HTTP1.1的优点：</p>
 <ul>
 <li><p>多路复用 multiplexing</p>
-<p>  <img src="/image/HTTP-1-2-对比/多路复用.png" alt="多路复用"></p>
+<p>  <img src="/image/HTTP-1-2-对比/多路复用.png" alt="多路复用"> 如图所示可以同时发送多个请求</p>
 </li>
 <li>二进制，方便运输和解析。（1.1是文本协议）</li>
 <li><p>服务推送 Server Push</p>
-<p>  相当于发了一个HTML文档内的所有资源。优点是可以缓存，缺点是如果客户端缓存了则白白浪费了资源。于是，看下一条</p>
+<p>  <img src="/image/HTTP-1-2-对比/2.png" alt="http1.1"> <img src="/image/HTTP-1-2-对比/3.png" alt="http2"><br>  上图来自文章后面的一个视频。<br>  相当于发了一个HTML文档内的所有资源。优点是可以缓存，缺点是如果客户端缓存了则白白浪费了资源。于是，看下一条</p>
 </li>
 <li><p>服务器提示 Server Hints</p>
 <p>  服务器提示可以先于客户端检测到将要请求的资源，提前通知客户端，服务器不发送所有资源的实体，它只发送资源的 URL。客户端接到提示后进一步验证之前的缓存，如果发现需要这些资源，则正式发起请求。服务器提示对 HTTP/2 来说兴许不是最新的，但非常值得在这里顺便一提，因为它没有上文提到的服务器推送冗余的缺点。</p>
 </li>
 </ul>
+<h1 id="相关资料">相关资料</h1><h2 id="五分钟短片简介HTTP2-0：">五分钟短片简介HTTP2.0：</h2><p><iframe height="498" width="510" src="https://youtu.be/fJ0C4zN5uOQ" frameborder="0" allowfullscreen></iframe></p>
+<h2 id="http1_v-s_http2">http1 v.s http2</h2><p><a href="http://www.blogjava.net/yongboy/archive/2015/03/17/423531.html" target="_blank" rel="external">http://www.blogjava.net/yongboy/archive/2015/03/17/423531.html</a><br><a href="http://www.w3ctech.com/topic/862" target="_blank" rel="external">http://www.w3ctech.com/topic/862</a></p>
 
       
     </div>

@@ -273,16 +273,18 @@
 <p>HTTP的详细内容可以参考本文下方的链接。在此仅简单总结相对HTTP1.1的优点：</p>
 <ul>
 <li><p>多路复用 multiplexing</p>
-<p>  <img src="/image/HTTP-1-2-对比/多路复用.png" alt="多路复用"></p>
+<p>  <img src="/image/HTTP-1-2-对比/多路复用.png" alt="多路复用"> 如图所示可以同时发送多个请求</p>
 </li>
 <li>二进制，方便运输和解析。（1.1是文本协议）</li>
 <li><p>服务推送 Server Push</p>
-<p>  相当于发了一个HTML文档内的所有资源。优点是可以缓存，缺点是如果客户端缓存了则白白浪费了资源。于是，看下一条</p>
+<p>  <img src="/image/HTTP-1-2-对比/2.png" alt="http1.1"> <img src="/image/HTTP-1-2-对比/3.png" alt="http2"><br>  上图来自文章后面的一个视频。<br>  相当于发了一个HTML文档内的所有资源。优点是可以缓存，缺点是如果客户端缓存了则白白浪费了资源。于是，看下一条</p>
 </li>
 <li><p>服务器提示 Server Hints</p>
 <p>  服务器提示可以先于客户端检测到将要请求的资源，提前通知客户端，服务器不发送所有资源的实体，它只发送资源的 URL。客户端接到提示后进一步验证之前的缓存，如果发现需要这些资源，则正式发起请求。服务器提示对 HTTP/2 来说兴许不是最新的，但非常值得在这里顺便一提，因为它没有上文提到的服务器推送冗余的缺点。</p>
 </li>
 </ul>
+<h1 id="相关资料">相关资料</h1><h2 id="五分钟短片简介HTTP2-0：">五分钟短片简介HTTP2.0：</h2><p><iframe height="498" width="510" src="https://youtu.be/fJ0C4zN5uOQ" frameborder="0" allowfullscreen></iframe></p>
+<h2 id="http1_v-s_http2">http1 v.s http2</h2><p><a href="http://www.blogjava.net/yongboy/archive/2015/03/17/423531.html" target="_blank" rel="external">http://www.blogjava.net/yongboy/archive/2015/03/17/423531.html</a><br><a href="http://www.w3ctech.com/topic/862" target="_blank" rel="external">http://www.w3ctech.com/topic/862</a></p>
 
       
     </div>
@@ -372,7 +374,7 @@ i.ele.onclick=<span class="function"><span class="keyword">function</span>(<span
     d.ele.style.display=<span class="string">"none"</span>;
 };
 </code></pre>
-<p>实现封装。将new F封装到$中 将onclick和hide写为F的原型函数。</p>
+<p>实现封装。将new F封装到\$中 将onclick和hide写为F的原型函数。</p>
 <pre><code class="javascript"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>{
     <span class="keyword">return</span> <span class="keyword">this</span>.getElementById(id);
 };
@@ -395,8 +397,8 @@ i.click(<span class="function"><span class="keyword">function</span>(<span class
     d.hide();
 });
 </code></pre>
-<p>这一步已经实现了$(“”).click()和.hide()的功能。然而内部还是和jQuery原生颇有不同。</p>
-<h2 id="向jQuery格式靠近">向jQuery格式靠近</h2><p>jQuery中添加函数是使用$.fn。因此，可以将F.prototype换成$.fn试试：</p>
+<p>这一步已经实现了\$(“”).click()和.hide()的功能。然而内部还是和jQuery原生颇有不同。</p>
+<h2 id="向jQuery格式靠近">向jQuery格式靠近</h2><p>jQuery中添加函数是使用\$.fn。因此，可以将F.prototype换成\$.fn试试：</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn(id);
 }
@@ -414,7 +416,7 @@ $.fn.prototype.hide = <span class="function"><span class="keyword">function</spa
     <span class="keyword">this</span>.ele.style.display=<span class="string">"none"</span>;
 };
 </code></pre>
-<p>由于并没有$.fn这样的变量，因此$.fn是$上的一个属性，将$的定义提前。<br>考虑到$可以取得一堆node，且get(i)为第i个DOM元素。因此，直接将ele赋值到this[i]中。</p>
+<p>由于并没有\$.fn这样的变量，因此\$.fn是\$上的一个属性，将\$的定义提前。<br>考虑到\$可以取得一堆node，且get(i)为第i个DOM元素。因此，直接将ele赋值到this[i]中。</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn(id);
 }
@@ -441,7 +443,7 @@ $.fn.prototype.hide = <span class="function"><span class="keyword">function</spa
     }
 };
 </code></pre>
-<p>jQuery中添加函数应该是直接$.fn.newFun这种形式，prototype应该被隐藏。因此，直接将$.fn.prototype用$.fn1替代。new $.fn(id)则可替换为new $.fn1.init(id)。由于改变构造函数会改变对象的<strong>prototype</strong>导致返回的对象找不到click和hide函数，因此需要将$.fn1.init.prototype设为$.fn.prototype，也即是$.fn1。</p>
+<p>jQuery中添加函数应该是直接\$.fn.newFun这种形式，prototype应该被隐藏。因此，直接将\$.fn.prototype用$.fn1替代。new \$.fn(id)则可替换为new \$.fn1.init(id)。由于改变构造函数会改变对象的<strong>prototype</strong>导致返回的对象找不到click和hide函数，因此需要将\$.fn1.init.prototype设为\$.fn.prototype，也即是\$.fn1。</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn1.init(id);
 }
@@ -476,7 +478,7 @@ i.click(<span class="function"><span class="keyword">function</span>(<span class
     d.hide();
 });
 </code></pre>
-<p>用$.fn替换$.fn.prototype也是一样的，不知道怎么觉得用对象替换该对象的prototype有点奇怪，但其实是一样的，只是为了区分留下来的$.fn因此多替换了一步。可以看到$.fn 函数已经没有作用的，是个空函数，为了体现jQuery的精简，$.fn1=$.fn.prototype 设为一个空函数的prototype与设为函数$的prototype没有区别。<br>最后将$.fn替换$.fn1，删除$.fn，设置$.fn1=$.prototype ，大功告成。</p>
+<p>用\$.fn替换\$.fn.prototype也是一样的，不知道怎么觉得用对象替换该对象的prototype有点奇怪，但其实是一样的，只是为了区分留下来的\$.fn因此多替换了一步。可以看到\$.fn 函数已经没有作用的，是个空函数，为了体现jQuery的精简，\$.fn1=\$.fn.prototype 设为一个空函数的prototype与设为函数$的prototype没有区别。<br>最后将\$.fn替换\$.fn1，删除\$.fn，设置\$.fn1=\$.prototype ，大功告成。</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn.init(id);
 }

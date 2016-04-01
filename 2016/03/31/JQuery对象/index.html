@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/31/JQuery对象/index.html">
 <meta property="og:site_name" content="LuoxlStayReal">
 <meta property="og:description" content="第一映像在日常编程中可以感觉到，jQuery使程序变得精简。显然，jQuery对象与DOM对象是有区别的。因为jQuery对象能够操作DOM对象，我们知道jQuery对象中肯定包含DOM对象。\$(“p”).get(0).innerHTML可以获得第一个p元素的innerHTML，\$(“p”).get(0)取到的是一个DOM元素，不再是jQuery对象。jQuery的函数操作大多返回一个jQue">
-<meta property="og:updated_time" content="2016-04-01T09:20:20.218Z">
+<meta property="og:updated_time" content="2016-04-01T13:38:53.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JQuery对象">
 <meta name="twitter:description" content="第一映像在日常编程中可以感觉到，jQuery使程序变得精简。显然，jQuery对象与DOM对象是有区别的。因为jQuery对象能够操作DOM对象，我们知道jQuery对象中肯定包含DOM对象。\$(“p”).get(0).innerHTML可以获得第一个p元素的innerHTML，\$(“p”).get(0)取到的是一个DOM元素，不再是jQuery对象。jQuery的函数操作大多返回一个jQue">
@@ -267,7 +267,7 @@ i.ele.onclick=<span class="function"><span class="keyword">function</span>(<span
     d.ele.style.display=<span class="string">"none"</span>;
 };
 </code></pre>
-<p>实现封装。将new F封装到$中 将onclick和hide写为F的原型函数。</p>
+<p>实现封装。将new F封装到\$中 将onclick和hide写为F的原型函数。</p>
 <pre><code class="javascript"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>{
     <span class="keyword">return</span> <span class="keyword">this</span>.getElementById(id);
 };
@@ -290,8 +290,8 @@ i.click(<span class="function"><span class="keyword">function</span>(<span class
     d.hide();
 });
 </code></pre>
-<p>这一步已经实现了$(“”).click()和.hide()的功能。然而内部还是和jQuery原生颇有不同。</p>
-<h2 id="向jQuery格式靠近">向jQuery格式靠近</h2><p>jQuery中添加函数是使用$.fn。因此，可以将F.prototype换成$.fn试试：</p>
+<p>这一步已经实现了\$(“”).click()和.hide()的功能。然而内部还是和jQuery原生颇有不同。</p>
+<h2 id="向jQuery格式靠近">向jQuery格式靠近</h2><p>jQuery中添加函数是使用\$.fn。因此，可以将F.prototype换成\$.fn试试：</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn(id);
 }
@@ -309,7 +309,7 @@ $.fn.prototype.hide = <span class="function"><span class="keyword">function</spa
     <span class="keyword">this</span>.ele.style.display=<span class="string">"none"</span>;
 };
 </code></pre>
-<p>由于并没有$.fn这样的变量，因此$.fn是$上的一个属性，将$的定义提前。<br>考虑到$可以取得一堆node，且get(i)为第i个DOM元素。因此，直接将ele赋值到this[i]中。</p>
+<p>由于并没有\$.fn这样的变量，因此\$.fn是\$上的一个属性，将\$的定义提前。<br>考虑到\$可以取得一堆node，且get(i)为第i个DOM元素。因此，直接将ele赋值到this[i]中。</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn(id);
 }
@@ -336,7 +336,7 @@ $.fn.prototype.hide = <span class="function"><span class="keyword">function</spa
     }
 };
 </code></pre>
-<p>jQuery中添加函数应该是直接$.fn.newFun这种形式，prototype应该被隐藏。因此，直接将$.fn.prototype用$.fn1替代。new $.fn(id)则可替换为new $.fn1.init(id)。由于改变构造函数会改变对象的<strong>prototype</strong>导致返回的对象找不到click和hide函数，因此需要将$.fn1.init.prototype设为$.fn.prototype，也即是$.fn1。</p>
+<p>jQuery中添加函数应该是直接\$.fn.newFun这种形式，prototype应该被隐藏。因此，直接将\$.fn.prototype用$.fn1替代。new \$.fn(id)则可替换为new \$.fn1.init(id)。由于改变构造函数会改变对象的<strong>prototype</strong>导致返回的对象找不到click和hide函数，因此需要将\$.fn1.init.prototype设为\$.fn.prototype，也即是\$.fn1。</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn1.init(id);
 }
@@ -371,7 +371,7 @@ i.click(<span class="function"><span class="keyword">function</span>(<span class
     d.hide();
 });
 </code></pre>
-<p>用$.fn替换$.fn.prototype也是一样的，不知道怎么觉得用对象替换该对象的prototype有点奇怪，但其实是一样的，只是为了区分留下来的$.fn因此多替换了一步。可以看到$.fn 函数已经没有作用的，是个空函数，为了体现jQuery的精简，$.fn1=$.fn.prototype 设为一个空函数的prototype与设为函数$的prototype没有区别。<br>最后将$.fn替换$.fn1，删除$.fn，设置$.fn1=$.prototype ，大功告成。</p>
+<p>用\$.fn替换\$.fn.prototype也是一样的，不知道怎么觉得用对象替换该对象的prototype有点奇怪，但其实是一样的，只是为了区分留下来的\$.fn因此多替换了一步。可以看到\$.fn 函数已经没有作用的，是个空函数，为了体现jQuery的精简，\$.fn1=\$.fn.prototype 设为一个空函数的prototype与设为函数$的prototype没有区别。<br>最后将\$.fn替换\$.fn1，删除\$.fn，设置\$.fn1=\$.prototype ，大功告成。</p>
 <pre><code class="javascript"><span class="keyword">var</span> $=<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> $.fn.init(id);
 }
