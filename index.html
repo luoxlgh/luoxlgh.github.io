@@ -72,12 +72,12 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Тэги</li>
+						<li>標籤</li>
 						
 						<li>友情链接</li>
 						
 						
-						<li>О сайте</li>
+						<li>關於</li>
 						
 					</ul>
 				</div>
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a>
+						<a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a>
 					</div>
 				</section>
 				
@@ -198,6 +198,121 @@
 
       <div class="body-wrap">
   
+    <article id="post-HTTP-1-2-对比" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/01/HTTP-1-2-对比/" class="article-date">
+  	<time datetime="2016-04-01T09:12:07.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/01/HTTP-1-2-对比/">HTTP 1-2 对比</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>超文本传输协议是一种应用层的协议。它是一种基于请求/响应的无状态的协议。</p>
+<h1 id="http1-0_v-s_http1-1">http1.0 v.s http1.1</h1><h2 id="进化的原因">进化的原因</h2><p>由于每个站点每天会有很多用户的请求，为了提高系统效率，HTTP1.0规定浏览器与服务器只保持短暂的链接，浏览器每次请求都要新建立一个TCP链接，该链接在请求完成后断开，服务器不跟踪也不记录过去的请求。</p>
+<p>由于网页变得复杂，这样频繁新建和断开链接的操作对性能造成影响。比如，当一个网页里包含了很多src时，对每个src都需要建立关闭链接的操作，太费事。因此，HTTP1.1出现了，它支持持久连接，在一个TCP上传送多个HTTP请求和响应（但其实现代浏览器通常最多6-8个HTTP/1.1的链接限制，后面会谈到HTTP2）。一个包含多个Src的网页可以在一次建立连接中传输。它还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间。</p>
+<h2 id="不同之处">不同之处</h2><p>HTTP1.1的绝大部分内容都和性能有关,比如减少连接建立次数，减少传输数据量。下面例举几个主要的改变：</p>
+<ul>
+<li><p><strong>持久连接</strong></p>
+<p>  HTTP1.1支持持久连接（persistent connection），并且默认使用。为了实现这个功能肯定需要新加入字段来实现。比如：Connection 请求头的值为Keep-Alive 时，客户端通知服务器返回本次请求结果后保持连接；Connection 请求头的值为close 时，客户端通知服务器返回本次请求结果后关闭连接。 </p>
+</li>
+<li><p><strong>Host域</strong></p>
+<p>  HTTP1.0中没有加入host域，它认为每台服务器都绑定唯一一个IP地址（可能是因为没有一个IP要配置多个虚拟web站点的需要吧），它在建立TCP连接的时候指定了IP地址，这个IP地址上只有一个host。随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed web servers），他们共享一个IP地址，因此需要host来区分。HTTP1.1中浏览器可以使用主机头名来明确表示要访问服务器上的哪个WEB站点，这才实现了在一台WEB服务器上可以在同一个IP地址和端口号上使用不同的主机名来创建多个虚拟WEB站点。</p>
+<p>  HTTP1.1中如果没有Host头域会报400错误，但支持空的host域。</p>
+</li>
+<li><p><strong>Transfer-Encoding</strong></p>
+<p>  HTTP1.1支持chunked transfer。<br>  HTTP消息中可以包含任意长度的实体，通常它们使用Content-Length来给出消息结束标志。但是，对于很多动态产生的响应，只能通过缓冲完整的消息来判断消息的大小，但这样做会加大延迟。</p>
+<p>  HTTP/1.1中引入了Chunked transfer-coding来解决上面这个问题，发送方将消息分割成若干个任意大小的数据块，每个数据块在发送时都会附上块的长度，最后用一个零长度的块作为消息结束的标志。这种方法允许发送方只缓冲消息的一个片段，避免缓冲整个消息带来的过载。</p>
+<p>  在HTTP/1.0中，有一个Content-MD5的头域，要计算这个头域需要发送方缓冲完整个消息后才能进行。而HTTP/1.1中，采用chunked分块传递的消息在最后一个块（零长度）结束之后会再传递一个拖尾（trailer），它包含一个或多个头域，这些头域是发送方在传递完所有块之后再计算出值的。发送方会在消息中包含一个Trailer头域告诉接收方这个拖尾的存在。</p>
+</li>
+<li><p><strong>Range/Content-Range</strong></p>
+<p>  当客户端已经有内容的一部分，为了节省带宽，可以只向服务器请求一部分。</p>
+<p>   HTTP/1.1中在请求消息中引入了range头域，它允许只请求资源的某个部分。在响应消息中Content-Range头域声明了返回的这部分对象的偏移值和长度。如果服务器相应地返回了对象所请求范围的内容，则响应码为206（Partial Content），它可以防止Cache将响应误以为是完整的一个对象。（2XX代表请求成功）</p>
+</li>
+<li><p><strong>100-continue</strong></p>
+<p>  如果请求中包含很多内容，但不确定服务器是否能够接收该请求（是否有权限）。因此，客户端事先发送一个只带头域的请求，如果服务器因为权限拒绝了请求，就回送响应码401（Unauthorized）；如果服务器接收此请求就回送响应码100，客户端就可以继续发送带实体的完整请求了。</p>
+<p>  客户端在Request头部中包Expect: 100-continue。Server看到之后呢如果回100 (Continue) 这个状态代码，客户端就继续发requestbody。</p>
+</li>
+<li><p><strong>Cache</strong></p>
+<p>  HTTP1.0使用Expire头域来判断资源是否过期。通过If-Modified-Since头域向服务器验证资源的Last-Modefied头域是否有更新，源服务器可能返回304（Not Modified），则表明该对象仍有效；也可能返回200（OK）替换请求的Cache对象。此外，HTTP/1.0中还定义了Pragma:no-cache头域，客户端使用该头域说明请求资源不能从cache中获取，而必须回源获取。</p>
+<p>  我们可以发现HTTP1.0有几处不足：当资源在秒级别内进行更改，而Modefied时间只精确到秒级别，其实资源更改了但是时间上显示不出来；有时候资源变成过期对象，但是与服务器资源相同，其实没有必下载新的资源。</p>
+<p>  HTTP1.1针对这几处不足进行改进。</p>
+<ul>
+<li>引入ETag头域用于重激活机制，它的值entity tag可以用来唯一的描述一个资源。请求消息中可以使用If-None-Match头域来匹配资源的entity tag是否有变化。</li>
+<li><p>当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活（revalidation）。</p>
+<p>HTTP1.1加入Cache-control，对缓存进行控制。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>其他</strong></p>
+<p>  request方法新添加了options，put,delete，trace,connect</p>
+<p>  新添加了一些状态码，包括206和100</p>
+</li>
+</ul>
+<h1 id="HTTP/2">HTTP/2</h1><p>于2015年2月28日定稿。多数headers与1.1一样，可以向下兼容。</p>
+<blockquote>
+<p>HTTP/2 is a replacement for how HTTP is expressed “on the wire.” It is not a ground-up rewrite of the protocol; HTTP methods, status codes and semantics are the same, and it should be possible to use the same APIs as HTTP/1.x (possibly with some small additions) to represent the protocol.</p>
+<p>The focus of the protocol is on performance; specifically, end-user perceived latency, network and server resource usage. One major goal is to allow the use of a single connection from browsers to a Web site.</p>
+</blockquote>
+<p>HTTP的详细内容可以参考本文下方的链接。在此仅简单总结相对HTTP1.1的优点：</p>
+<ul>
+<li><p>多路复用 multiplexing</p>
+<p>  <img src="/image/HTTP-1-2-对比/多路复用.png" alt="多路复用"></p>
+</li>
+<li>二进制，方便运输和解析。（1.1是文本协议）</li>
+<li><p>服务推送 Server Push</p>
+<p>  相当于发了一个HTML文档内的所有资源。优点是可以缓存，缺点是如果客户端缓存了则白白浪费了资源。于是，看下一条</p>
+</li>
+<li><p>服务器提示 Server Hints</p>
+<p>  服务器提示可以先于客户端检测到将要请求的资源，提前通知客户端，服务器不发送所有资源的实体，它只发送资源的 URL。客户端接到提示后进一步验证之前的缓存，如果发现需要这些资源，则正式发起请求。服务器提示对 HTTP/2 来说兴许不是最新的，但非常值得在这里顺便一提，因为它没有上文提到的服务器推送冗余的缺点。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-JQuery对象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -224,7 +339,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="第一映像">第一映像</h1><p>在日常编程中可以感觉到，jQuery使程序变得精简。显然，jQuery对象与DOM对象是有区别的。因为jQuery对象能够操作DOM对象，我们知道jQuery对象中肯定包含DOM对象。$(“p”).get(0).innerHTML可以获得第一个p元素的innerHTML，$(“p”).get(0)取到的是一个DOM元素，不再是jQuery对象。jQuery的函数操作大多返回一个jQuery对象，当判断一个元素前面有没有别的元素时，使用pre()是否为undefined是无法判断的，因为就算没有元素，也会返回一个空的jQuery对象[object Object]，因此需要用pre().get(0)是否为undefined来判断前面是否还有元素。讲到这里有了个明确的概念：<strong>jQuery对象包含了DOM对象，并在jQuery对象中封装了各种对DOM对象进行操作的函数</strong>。</p>
+        <h1 id="第一映像">第一映像</h1><p>在日常编程中可以感觉到，jQuery使程序变得精简。显然，jQuery对象与DOM对象是有区别的。因为jQuery对象能够操作DOM对象，我们知道jQuery对象中肯定包含DOM对象。\$(“p”).get(0).innerHTML可以获得第一个p元素的innerHTML，\$(“p”).get(0)取到的是一个DOM元素，不再是jQuery对象。jQuery的函数操作大多返回一个jQuery对象，当判断一个元素前面有没有别的元素时，使用pre()是否为undefined是无法判断的，因为就算没有元素，也会返回一个空的jQuery对象[object Object]，因此需要用pre().get(0)是否为undefined来判断前面是否还有元素。讲到这里有了个明确的概念：<strong>jQuery对象包含了DOM对象，并在jQuery对象中封装了各种对DOM对象进行操作的函数</strong>。</p>
 <h1 id="代码演变">代码演变</h1><h2 id="一个简单的dom操作">一个简单的dom操作</h2><p>首先，从一个很简单的功能开始说。一个按钮inp，点击一次，隐藏块div1。结构代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div1"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">value</span>=<span class="value">"点击"</span> <span class="attribute">id</span>=<span class="value">"inp"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>我们可能会这样写代码：</p>
 <pre><code class="javascript"><span class="keyword">var</span> div=<span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);
