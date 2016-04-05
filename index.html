@@ -32,7 +32,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="null" class="js-avatar">
+			<img lazy-src="/img/portrait.png" class="js-avatar">
 			
 		</a>
 
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a>
+						<a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a> <a href="/tags/动态规划-递归/" style="font-size: 10px;">动态规划 递归</a>
 					</div>
 				</section>
 				
@@ -162,7 +162,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img lazy-src="null" class="js-avatar">
+				<img lazy-src="/img/portrait.png" class="js-avatar">
 			
 			</div>
 			<hgroup>
@@ -197,6 +197,128 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-回文子序列" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/04/回文子序列/" class="article-date">
+  	<time datetime="2016-04-04T13:28:22.000Z" itemprop="datePublished">2016-04-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/04/回文子序列/">回文子序列</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在此记录一道腾讯笔试的编程题。这题乍一看觉得是用动态规划，但是并没有做出来，最后是用递归解的。递归的思想更容易但是时间复杂度很高，所以我估计这题最后提交上去会超时ORZ。接下来回顾这道题，并再举别的和此题类似的例子~~~</p>
+<h1 id="题目描述">题目描述</h1><p>给一个字符串，找出它的最长的回文子序列的长度。例如，如果给定的序列是“BBABCBCAB”，则输出应该是7，“BABCBAB”是在它的最长回文子序列。 “BBBBB”和“BBCBB”也都是该字符串的回文子序列，但不是最长的。</p>
+<p>当时的题目写的不是这样直白，好像是说一个字符串可以删除任意个字符，求删除后字符串是回文字符串的最大长度。当时就觉着直接求所有子串，然后从长到短来依次判断是否是回文串，如果是则直接return长度。但是这种穷举法显然太弱了。接下来先用递归方法来求解吧（虽然时间复杂度高，但是代码好写…）。</p>
+<h1 id="递归解法">递归解法</h1><h2 id="思路">思路</h2><p>给定一个字符串，从两边开始对比（当然从两边，因为谁也不嫌长，而且是子序列，不要求连在一起），假设此时左右下标分别为i和j。</p>
+<ul>
+<li>如果str[i]==str[j]，则len+1，然后递归str(i+1,j-1)。</li>
+<li>如果str[i]!=str[j]，则分别递归str(i+1,j)和str(i,j-1)，取两者的较大值。<h2 id="代码">代码</h2><pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longest</span><span class="params">(String s)</span> </span>{
+  <span class="keyword">if</span>(s.length() &lt;= <span class="number">1</span>) <span class="keyword">return</span> s.length();
+  <span class="keyword">if</span>(s.charAt(<span class="number">0</span>) == s.charAt(s.length()-<span class="number">1</span>)){
+      <span class="keyword">return</span> longest(s.substring(<span class="number">1</span>, s.length()-<span class="number">1</span>))+<span class="number">2</span>;
+  }
+  <span class="keyword">int</span> a = longest(s.substring(<span class="number">1</span>, s.length()));
+  <span class="keyword">int</span> b = longest(s.substring(<span class="number">0</span>, s.length()-<span class="number">1</span>));
+  <span class="keyword">return</span> Math.max(a, b);
+}
+</code></pre>
+</li>
+</ul>
+<h1 id="DP解法">DP解法</h1><h2 id="思路-1">思路</h2><p>dp[i][j]存放字符串str中从CharAt(i)到CharAt(j)的最长回文子序列长度。</p>
+<ul>
+<li>如果str[i]==str[j]，dp[i][j]=dp[i+1][j-1]+1。</li>
+<li>如果str[i]!=str[j]，dp[i][j]=max(dp[i+1][j],dp[i][j-1])。</li>
+</ul>
+<p>然而，递归表达式写出来了，还要考虑初始条件及入口。</p>
+<ul>
+<li>初始条件： dp[i][i]=1。</li>
+<li>入口：由前面给出的DP表达式可以看出来，在求解dp[i][j]时，要已经得到dp[i+1][j-1]，dp[i+1][j]，dp[i][j-1]这三个变量。</li>
+</ul>
+<p>从矩阵的角度来看这个dp二维数组。首先，肯定是j&gt;i，即我们用的是该矩阵的右上半角。其次，初始化时，dp[i][i]=1表示该矩阵的对角线上的数字都为1。再看入口条件，dp[i+1][j-1]，dp[i+1][j]，dp[i][j-1]都在dp[i][j]的右下角。分析完了，可以感受到如何构造这个dp数组了吧~</p>
+<p>由下列矩阵可知，在给问好处赋值的时候，X和+处应该已经有值。因此，我们应该从对角线开始，依次向右上角给矩阵赋值。<br><img src="/image/回文子序列/递归求解.png" alt="递归求解"><br>下图显示地描述了这个过程（假设此时str=”abca”）<br><img src="/image/回文子序列/dp示例.png" alt="dp示例"></p>
+<h2 id="代码-1">代码</h2><pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longest</span><span class="params">(String s)</span> </span>{
+    <span class="keyword">int</span> n = s.length();
+    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];
+    <span class="keyword">int</span> tmp;
+    <span class="keyword">char</span>[] str = s.toCharArray();
+    <span class="comment">//初始化</span>
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=n-<span class="number">1</span>; i++){
+        dp[i][i] = <span class="number">1</span>;
+    } 
+
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n-<span class="number">1</span>; i++){
+        tmp = <span class="number">0</span>;
+        <span class="comment">//考虑 str[j, j+i] 由j到j+i的串</span>
+        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j+i&lt;=n-<span class="number">1</span>; j++){
+            <span class="comment">//如果首尾相同</span>
+            <span class="keyword">if</span>(str[j] == str[j+i]){
+                tmp = dp[j+<span class="number">1</span>][j+i-<span class="number">1</span>] + <span class="number">2</span>;
+            }<span class="keyword">else</span>{
+                tmp = Math.max(dp[j+<span class="number">1</span>][j+i],dp[j][j+i-<span class="number">1</span>]);
+            }
+            dp[j][j+i] = tmp;
+        }
+    }
+    <span class="comment">//返回串 str[0][n-1] 的结果</span>
+    <span class="keyword">return</span> dp[<span class="number">0</span>][n-<span class="number">1</span>];
+}
+</code></pre>
+<h1 id="类似解法——最长公共子序列">类似解法——最长公共子序列</h1><h2 id="题目描述-1">题目描述</h2><p>两个字符串Str1和Str2，求两个字符串的公共子序列（顺序不可打乱）的长度。比如”abcdef”和”ccaf”的最长公共子序列为”cf”，长度为2。</p>
+<h2 id="思路-2">思路</h2><p>我们可以感受到这题可以用dp[i][j]保存str1(0,i)和str2(0,j)的最长公共子序列。(此处不写s.toCharArray或者charAt，意思就是这样)</p>
+<ul>
+<li>当str1[i]==str2[j]时，dp[i][j]=dp[i-1][j-1]+1</li>
+<li>当str1[i]!=str2[j]时，dp[i][j]=max(dp[i-1][j],dp[i][j-1])<br>在矩阵上表示为从矩阵的左上角求解到右下角。一般来说我们需要初始化dp[0][<em>]与dp[</em>][0],但也可以加一行一列赋值为0再直接进入dp过程。</li>
+</ul>
+<p>dp赋值图如下：<br><img src="/image/回文子序列/最长子序列dp.png" alt="最长子序列dp"></p>
+<h1 id="文章最后">文章最后</h1><p>动态规划用处很大，这两个问题还分别有最长回文子串和最长公共子串，与上面解法几乎一样。但最长回文子串有个Manacher的解法，能在O(n)的复杂度得到结果。算法很妙，在此不做解释了。可以移步<a href="https://segmentfault.com/a/1190000003914228" target="_blank" rel="external">这里</a>查看详细解法。</p>
+<p>明天晚上就是微软上机测试了，感受到了少壮不努力，老大徒伤悲…… 也不知道刷的90道leetcode够不够ORZ，加油吧~</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划-递归/">动态规划 递归</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-HTTP-1-2-对比" class="article article-type-post" itemscope itemprop="blogPost">
   
