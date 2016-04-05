@@ -230,18 +230,18 @@
 <h1 id="递归解法">递归解法</h1><h2 id="思路">思路</h2><p>给定一个字符串，从两边开始对比（当然从两边，因为谁也不嫌长，而且是子序列，不要求连在一起），假设此时左右下标分别为i和j。</p>
 <ul>
 <li>如果str[i]==str[j]，则len+1，然后递归str(i+1,j-1)。</li>
-<li>如果str[i]!=str[j]，则分别递归str(i+1,j)和str(i,j-1)，取两者的较大值。<h2 id="代码">代码</h2><pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longest</span><span class="params">(String s)</span> </span>{
-  <span class="keyword">if</span>(s.length() &lt;= <span class="number">1</span>) <span class="keyword">return</span> s.length();
-  <span class="keyword">if</span>(s.charAt(<span class="number">0</span>) == s.charAt(s.length()-<span class="number">1</span>)){
-      <span class="keyword">return</span> longest(s.substring(<span class="number">1</span>, s.length()-<span class="number">1</span>))+<span class="number">2</span>;
-  }
-  <span class="keyword">int</span> a = longest(s.substring(<span class="number">1</span>, s.length()));
-  <span class="keyword">int</span> b = longest(s.substring(<span class="number">0</span>, s.length()-<span class="number">1</span>));
-  <span class="keyword">return</span> Math.max(a, b);
+<li>如果str[i]!=str[j]，则分别递归str(i+1,j)和str(i,j-1)，取两者的较大值。</li>
+</ul>
+<h2 id="代码">代码</h2><pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longest</span><span class="params">(String s)</span> </span>{
+    <span class="keyword">if</span>(s.length() &lt;= <span class="number">1</span>) <span class="keyword">return</span> s.length();
+    <span class="keyword">if</span>(s.charAt(<span class="number">0</span>) == s.charAt(s.length()-<span class="number">1</span>)){
+        <span class="keyword">return</span> longest(s.substring(<span class="number">1</span>, s.length()-<span class="number">1</span>))+<span class="number">2</span>;
+    }
+    <span class="keyword">int</span> a = longest(s.substring(<span class="number">1</span>, s.length()));
+    <span class="keyword">int</span> b = longest(s.substring(<span class="number">0</span>, s.length()-<span class="number">1</span>));
+    <span class="keyword">return</span> Math.max(a, b);
 }
 </code></pre>
-</li>
-</ul>
 <h1 id="DP解法">DP解法</h1><h2 id="思路-1">思路</h2><p>dp[i][j]存放字符串str中从CharAt(i)到CharAt(j)的最长回文子序列长度。</p>
 <ul>
 <li>如果str[i]==str[j]，dp[i][j]=dp[i+1][j-1]+1。</li>
