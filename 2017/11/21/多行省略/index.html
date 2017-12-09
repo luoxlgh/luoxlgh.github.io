@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>CSS ellipsis | LuoxlStayReal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="单行省略单行省略的问题一般采用统一的解决方法————css样式123overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+该方法没有兼容性问题。且对于中英文均显示正常。
+多行省略CSS方式webkit内核实现多行省略多行省略在webkit内核中可以使用如下样式(超过三行省略)：12345display: -webkit-box;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS ellipsis">
+<meta property="og:url" content="http://yoursite.com/2017/11/21/多行省略/index.html">
+<meta property="og:site_name" content="LuoxlStayReal">
+<meta property="og:description" content="单行省略单行省略的问题一般采用统一的解决方法————css样式123overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+该方法没有兼容性问题。且对于中英文均显示正常。
+多行省略CSS方式webkit内核实现多行省略多行省略在webkit内核中可以使用如下样式(超过三行省略)：12345display: -webkit-box;">
+<meta property="og:updated_time" content="2017-12-09T02:30:18.251Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS ellipsis">
+<meta name="twitter:description" content="单行省略单行省略的问题一般采用统一的解决方法————css样式123overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+该方法没有兼容性问题。且对于中英文均显示正常。
+多行省略CSS方式webkit内核实现多行省略多行省略在webkit内核中可以使用如下样式(超过三行省略)：12345display: -webkit-box;">
+  
+    <link rel="alternative" href="/atom.xml" title="LuoxlStayReal" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/portrait.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Luoxl</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS-JavaScript/" style="font-size: 10px;">CSS JavaScript</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JavaScript-异步/" style="font-size: 10px;">JavaScript 异步</a> <a href="/tags/JavaScript-设计模式/" style="font-size: 10px;">JavaScript 设计模式</a> <a href="/tags/简单算法-动态规划-递归/" style="font-size: 10px;">简单算法 动态规划 递归</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Luoxl</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/portrait.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Luoxl</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-多行省略" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/21/多行省略/" class="article-date">
+  	<time datetime="2017-11-21T13:44:57.000Z" itemprop="datePublished">2017-11-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS ellipsis
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS-JavaScript/">CSS JavaScript</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="单行省略">单行省略</h1><p>单行省略的问题一般采用统一的解决方法————css样式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">text-overflow</span>:<span class="value"> ellipsis</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">white-space</span>:<span class="value"> nowrap</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>该方法没有兼容性问题。且对于中英文均显示正常。</p>
+<h1 id="多行省略">多行省略</h1><h2 id="CSS方式">CSS方式</h2><h3 id="webkit内核实现多行省略">webkit内核实现多行省略</h3><p>多行省略在webkit内核中可以使用如下样式(超过三行省略)：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value"> -webkit-box</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">-webkit-box-orient</span>:<span class="value"> vertical</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">-webkit-line-clamp</span>:<span class="value"> <span class="number">3</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">text-overflow</span>:<span class="value"> ellipsis</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>除去浏览器的兼容性问题，在纯字母的情况下需要特殊处理，加上：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">word-break</span>:<span class="value"> break-all</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="float方式">float方式</h3><p>该方法的缺点很明显： ‘…’总是不一定能够遮盖住整个字符，会出现字符显示不完整的视觉效果。</p>
+<h3 id="before&amp;after方式">before&amp;after方式</h3><p>该类设置为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">1em</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">1.5em</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">max-height</span>:<span class="value"> <span class="number">3em</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin-bottom</span>:<span class="value"> <span class="number">20px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">word-break</span>:<span class="value"> break-all</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>其中max-height设置为两倍的line-height<br>将before设置为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">'...'</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">0px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">bottom</span>:<span class="value"> <span class="number">0px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#cec</span></span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>after设置为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">''</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0.72em</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1.2em</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">right</span>:<span class="value"><span class="number">0px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#cec</span></span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>background-color</code>设置为文字背景色；after的<code>width</code>设置为当前文字大小时，’…’的宽度。</p>
+<p>该方法的设计理念是：当文字高度没有超过2行，使用after的空白内容盖住’…’。当超过时，则显示before伪元素的内容。<br>after只设置left不设置bottom，则其总是在元素的最下面，而不是父元素的最下面。<br>该方法与float方法有一样的缺点。<br>相对于float方法的优点是没有固定元素的高度。</p>
+<p><strong>CSS的实现方式在<a href="https://codepen.io/luoxlStayReal/pen/mqxred" target="_blank" rel="external">该codepen</a>中可以对比效果。</strong></p>
+<h2 id="JavaScript方式">JavaScript方式</h2><p>JS的实现方法对比<code>Clamp.js</code>和<code>TextOverflowClamp.js</code>这两种。<br><strong>这两种在<a href="https://codepen.io/luoxlStayReal/pen/EbLaVL" target="_blank" rel="external">该codepen</a>中可以对比效果。</strong><code>Clamp.js</code>的效果更优秀。</p>
+<ul>
+<li><code>TextOverflowClamp.js</code>将文字按照宽度进行切分，将每行内容放入<code>span</code>标签插入该节点。最后一行使用单行省略的css样式进行处理。</li>
+<li><code>Clamp.js</code>方法根据不同浏览器进行适配。在支持<code>webkitLineClamp</code>属性的内核中，使用css多行省略的方式（<code>Clamp.js</code>允许禁用原生的css多行省略样式）。在其他浏览器中，根据总长度将显示内容剪裁为<code>content+...</code>。</li>
+</ul>
+<h3 id="Clamp-js">Clamp.js</h3><ul>
+<li>优点：适配性和扩展性很强。</li>
+<li>缺点：一个字符一个字符的减少，判断是否超出高度，貌似没有必要。参考sort方式分情况进行二分法减少可以提升其效率。</li>
+</ul>
+<h3 id="JS方法缺点">JS方法缺点</h3><ul>
+<li>不能适配屏幕缩放。需要监听屏幕改变重新计算显示字符。</li>
+</ul>
+<h1 id="结语">结语</h1><ul>
+<li>Javascript方式没有视觉缺陷和兼容性问题，在使用’…’作为省略符号的时候，采用该方法最为妥当。</li>
+<li>CSS样式可通过修改’…’省略的方式来改善视觉上的影响。比如渐变等。</li>
+</ul>
+<p>CSS有毒zZ</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/14/日记型博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">日记型博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="多行省略" data-title="CSS ellipsis" data-url="http://yoursite.com/2017/11/21/多行省略/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Luoxl
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+        });
+    </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                all[i].SourceElement().parentNode.className += ' has-jax';
+            }
+        });
+    </script>
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+<div id="totop" style="position:fixed;bottom:50px;right:50px;cursor: pointer;">
+    <a title="���ض���"><img src="/img/scrollup.png"/></a>
+    </div>
+    <script src="/js/totop.js"></script>
+  </div>
+</body>
+</html>
